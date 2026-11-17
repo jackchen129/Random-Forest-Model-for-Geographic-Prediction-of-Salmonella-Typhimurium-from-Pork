@@ -172,7 +172,7 @@ if (run$ml) {
   }
   pred_rf <- function(fit, te) predict(fit$rf, X[te, fit$keep, drop = FALSE],
                                        num.threads = cfg$threads)$predictions[, "US"]
-  lookup_p <- function(grp, tr, te) {            # lineage-only baseline: US rate of the group in training
+  lookup_p <- function(grp, tr, te) {            # lineage-only baseline: US rate of the group in ing
     prior <- mean(y[tr] == "US")
     tab <- tapply(y[tr] == "US", grp[tr], function(v) (sum(v) + prior) / (length(v) + 1))
     p <- as.numeric(tab[as.character(grp[te])]); p[is.na(p)] <- prior; p
@@ -305,7 +305,7 @@ if (run$ml) {
   # Every panel and the combined figure are saved as SVG and PDF (vector).
   lab_primary <- "Cluster-blocked CV"
   pb <- ml_preds |> filter(scheme == cfg$primary_blocked, model == "RF_balanced")
-  pr <- ml_preds |> filter(scheme == "random_stratified_55", model == "RF_balanced")   # Train/Test split design (0.55:0.45, stratified by country)
+  pr <- ml_preds |> filter(scheme == "random_stratified_55", model == "RF_balanced")   # Training/Testing split design (0.55:0.45, stratified by country)
   cm <- pb |> mutate(pred = factor(ifelse(p_US >= 0.5, "US", "China"), levels = c("China", "US"))) |>
     count(truth, pred) |> group_by(truth) |> mutate(pct_of_actual = round(100 * n / sum(n), 1)) |> ungroup()
   roc_df <- function(d, lab) { r <- pROC::roc(d$truth, d$p_US, levels = c("China", "US"), direction = "<", quiet = TRUE)

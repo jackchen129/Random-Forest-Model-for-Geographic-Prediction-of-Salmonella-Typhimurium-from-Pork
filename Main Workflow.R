@@ -291,7 +291,7 @@ if (run$ml) {
                      top20_overlap = length(intersect(top_b, top_r)))
     save_csv(ic, paste0("ml_importance_random_vs_", nm, ".csv")); print(ic)
   }
-  imp_blocked <- imp_by[[cfg$primary_blocked]]            # primary design -> Figure 10D
+  imp_blocked <- imp_by[[cfg$primary_blocked]]
   
   # --- final model on all isolates, permutation importance ---
   logmsg("   final model (all isolates, permutation importance)")
@@ -301,7 +301,7 @@ if (run$ml) {
   save_csv(imp_full, "ml_importance_full_model_permutation.csv")
   top_unannotated <- head(imp_full$feature[!imp_full$annotated], 50)
   
-  # --- consolidated Figure 10: confusion matrix, ROC, probabilities, importance ---
+  # --- consolidated figure: confusion matrix, ROC, probabilities, importance ---
   # Every panel and the combined figure are saved as SVG and PDF (vector).
   lab_primary <- "Cluster-blocked CV"
   pb <- ml_preds |> filter(scheme == cfg$primary_blocked, model == "RF_balanced")
@@ -328,8 +328,8 @@ if (run$ml) {
     scale_fill_manual(values = c(`TRUE` = "#984EA3", `FALSE` = "grey60"), labels = c(`FALSE` = "unannotated", `TRUE` = "annotated")) +
     labs(title = "D  Top 15 features (blocked folds)", x = NULL, y = "Mean impurity importance", fill = NULL) + theme_minimal()
   panels <- list(A_confusion_matrix = pA, B_ROC_curve = pB, C_predicted_probability = pC, D_top15_importance = pD)
-  for (nm in names(panels)) save_plot(panels[[nm]], paste0("Figure10_panel", nm), 6, 5)
-  if (has_patchwork) save_plot((pA | pB) / (pC | pD), "Figure10_consolidated", 11, 9)
+  for (nm in names(panels)) save_plot(panels[[nm]], paste0("Figure_panel", nm), 6, 5)
+  if (has_patchwork) save_plot((pA | pB) / (pC | pD), "Figure_consolidated", 11, 9)
 }
 
 

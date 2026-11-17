@@ -4,7 +4,7 @@ Random Forest Model for Geographic Prediction of *Salmonella enterica* Serotype 
 This repository contains the R code for predicting the country of origin (*China* vs. *United States*) of pork-associated *Salmonella* Typhimurium isolates with a random forest trained on pan-genome gene presence/absence data, and for testing whether the prediction generalizes beyond clonal population structure.
 
 ## 📂 Scripts
-- `Main Workflow.R` — **Main script** (feature filtering, random forest, random hold-out and lineage-aware validation, feature-importance stability, Figure 10). All settings are in the `cfg` list at the top.
+- `Main Workflow.R` — **Main script** (feature filtering, random forest, random hold-out and lineage-aware validation, feature-importance stability, Figure). All settings are in the `cfg` list at the top.
 
 ## 🧠 What `Main Workflow.R` does
 1. **Loads the data**: isolate table (`Isolates.xlsx`, sheet *Isolates*), the pan-genome gene presence/absence matrix (`Gene Presence Absence Matrix.xlsx`), and the 70 phylogenetic clusters (`Clusters.xlsx`, sheet *Clusters*). Place the three files in `cfg$data_dir`.
@@ -15,7 +15,7 @@ This repository contains the R code for predicting the country of origin (*China
 6. **Produces a figure** (SVG and PDF).
 
 ## 📊 Outputs (`Results/`)
-`run_log.txt`, `sessionInfo.txt`, `ml_summary.csv`, `ml_metrics_per_repeat.csv`, `ml_predictions_first_repeat.csv`, `ml_importance_stability_random_split.csv`, `ml_importance_stability_tree_cluster_blocked.csv`, `ml_importance_random_vs_tree_cluster_blocked.csv`, `ml_importance_full_model_permutation.csv`, `lineage_ST_by_country.csv`, `lineage_treecluster_by_country.csv`, `Figure_*.svg/pdf`, and a cached `pangenome_matrix.rds`.
+`run_log.txt`, `sessionInfo.txt`, `ml_summary.csv`, `ml_metrics_per_repeat.csv`, `ml_predictions_first_repeat.csv`, `ml_importance_stability_random_split.csv`, `ml_importance_stability_tree_cluster_blocked.csv`, `ml_importance_random_vs_tree_cluster_blocked.csv`, `ml_importance_full_model_permutation.csv`, `lineage_ST_by_country.csv`, `lineage_treecluster_by_country.csv`, `Figure.svg/pdf`, and a cached `pangenome_matrix.rds`.
 
 ## ▶️ Running it
 ```r

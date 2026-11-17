@@ -24,7 +24,7 @@ source("Main Workflow.R")   # set cfg$fast <- TRUE first for a quick smoke test
 Expected values in `run_log.txt`: nearZeroVar keeps 1,986 of 15,477 clusters on the full data; Clusters: 70 clusters, 52 singletons, largest 313. Leave-one-cluster-out is slow (`cfg$do_loco`).
 
 ## 🧩 Dependencies
-R packages: `readxl`, `dplyr`, `tidyr`, `readr`, `ranger`, `pROC`, `ggplot2`, `svglite`, and (optional) `patchwork`. Versions: R 4.5.3, ranger 0.18.0. A fixed random seed of 123 is used throughout (`cfg$seed`).
+R packages: `readxl`, `dplyr`, `tidyr`, `readr`, `ranger`, `pROC`, `ggplot2`, `svglite`, and (optional) `patchwork`. A fixed random seed of 123 is used throughout (`cfg$seed`).
 
 ---
 
